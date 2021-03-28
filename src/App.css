@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: #01115f;
+  
 }
 
 .App-logo {
@@ -14,6 +16,7 @@
 }
 
 .App-header {
+
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -35,4 +38,64 @@
   to {
     transform: rotate(360deg);
   }
+
+  
+
+}
+.info{
+ width: 50%;   
+ align-content:center;
+ background-color: #eeeeee;
+ color: rgb(0, 0, 0);
+ 
+}
+table, th, td {
+ color:rgb(0, 0, 0);
+}
+.footy{
+
+  width: 100%;   
+  align-content: center;
+  color: rgb(231, 231, 231);
+
+ }
+ .pictures{
+  width: 50%;   
+  align-content: center;
+  background-color: #eeeeee;
+  color: rgb(36, 36, 36);
+  box-shadow: 4px 4px 4px rgb(0, 0, 0); 
+
+ }
+
+
+ #upload {
+  opacity: 0;
+}
+
+#upload-label {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+.image-area {
+  border: 2px dashed rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  position: relative;
+}
+
+
+.image-area img {
+  z-index: 2;
+  position: relative;
+}
+.main{
+  background-color: #031155;
+  color: whitesmoke;
+}
+.sixth{
+  align-content: center;
+  width: 16%;
 }

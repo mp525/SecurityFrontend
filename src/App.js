@@ -19,7 +19,7 @@ import LoggedIn from "./LoggedIn";
 import LoginForm from "./loginForm";
 import Userpage from "./Userpage";
 import Adminpage from "./Adminpage";
-
+import ProfilePage from "./ProfilePage"
 function App() {
   const [errorMes, setErrorMes] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -62,7 +62,7 @@ function App() {
         </Route>
         <Route path="/page3">
           {/* <User /> */}
-          <Userpage />
+          <ProfilePage />
         </Route>
         <Route path="/page4">
           {/* <Admin /> */}
