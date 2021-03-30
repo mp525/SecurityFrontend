@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import facade from "./apiFacade";
 import 'bootstrap/dist/css/bootstrap.min.css';
 function Userpage() {
   const [errorUser, setErrorUser] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error");
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState();
+  const [fname,setFname]=useState("");
+  const [lname,setLname]=useState("");
+  const [userName,setUsername]=useState();
+  const [email,setEmail]=useState();
   useEffect(() => {
     facade
       .fetchDataUser()
@@ -18,17 +22,25 @@ function Userpage() {
   }, []);
 
   useEffect(() => {
-    facade
-      .fetchProfileInfo("user",setProfile)
+    if(dataFromServer){
+      facade
+      .fetchProfileInfo(dataFromServer.substring(9, 13),setProfile)
       .then((data) => setProfile(data))
       .catch((err) => {
-        console.log(err);
-       
-        console.log("wtf");
-        
+        throw(err)
       });
-  }, []);
+    }
+    
+  }, [profile]);
 
+  useEffect(()=>{
+    if(profile!=null){
+      setFname(profile.firstName);
+      setLname(profile.lastName);
+      setUsername(profile.userName);
+      setEmail(profile.email);
+    }
+  })
   return (
     <div className="main">
       <div align="center">
@@ -40,12 +52,9 @@ function Userpage() {
           <table className="table">
             <thead><tr><th>First name</th><th>Last name</th><th>Email</th><th>Username</th></tr></thead>
             <tbody>
-              
-              {profile &&
-                 (<tr><td>{profile.firstName}</td><td>{profile.lastName}</td><td>{profile.email}</td><td>{profile.userName}</td></tr>)
-                }
-            </tbody>
+                <tr><td>{fname}</td><td>{lname}</td><td>{email}</td><td>{userName}</td> </tr>
 
+            </tbody>
           </table>
 
 
@@ -68,8 +77,6 @@ function Userpage() {
         </div>
         <br /><br /><br /><br />         <br /><br />
         <br /><br /><br /><br /><br /><br /><br /><br />
-
-
         <div className="footy">
           <h3>BSH Production</h3>
         </div>
