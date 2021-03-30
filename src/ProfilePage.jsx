@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function Userpage() {
   const [errorUser, setErrorUser] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error");
+  const [profile, setProfile] = useState({});
   useEffect(() => {
     facade
       .fetchDataUser()
@@ -16,6 +17,17 @@ function Userpage() {
       });
   }, []);
 
+  useEffect(() => {
+    facade
+      .fetchProfileInfo("user",setProfile)
+      .then((data) => setProfile(data))
+      .catch((err) => {
+        console.log(err);
+       
+        console.log("wtf");
+        
+      });
+  }, []);
 
   return (
     <div className="main">
@@ -26,10 +38,12 @@ function Userpage() {
         <div className="info">
           <h3 align="center">{dataFromServer.substring(9, 13)}'s profile information</h3>
           <table className="table">
-
-            <thead><th>First name</th><th>Last name</th><th>Email</th><th>Username</th></thead>
+            <thead><tr><th>First name</th><th>Last name</th><th>Email</th><th>Username</th></tr></thead>
             <tbody>
-              <td>Matti</td><td>Hansen</td><td>m@g.com</td><td>MBMBMBM</td>
+              
+              {profile &&
+                 (<tr><td>{profile.firstName}</td><td>{profile.lastName}</td><td>{profile.email}</td><td>{profile.userName}</td></tr>)
+                }
             </tbody>
 
           </table>
@@ -38,16 +52,16 @@ function Userpage() {
         </div>
         <div className="pictures">
           <h3 align="center">{dataFromServer.substring(9, 13)}'s pictures here</h3>
-          <div class="border border-secondary">
+          <div className="border border-secondary">
             <br /><br />
 
           </div>
 
           <div align="center">
             <div className="sixth">
-              <input id="upload" type="file" onchange="readURL(this);" class="form-control border-0" />
-              <div class="input-group-append">
-                <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+              <input id="upload" type="file" className="form-control border-0" />
+              <div className="input-group-append">
+                <label htmlFor="upload" className="btn btn-light m-0 rounded-pill px-4"> <i className="fa fa-cloud-upload mr-2 text-muted"></i><small className="text-uppercase font-weight-bold text-muted">Choose file</small></label>
               </div>
             </div>
           </div>
@@ -57,7 +71,7 @@ function Userpage() {
 
 
         <div className="footy">
-          <h3>BSH Production CyperSec</h3>
+          <h3>BSH Production</h3>
         </div>
       </div>
 

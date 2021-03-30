@@ -5,12 +5,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  
   NavLink,
   useLocation,
-  useParams,
-  Prompt,
-  useRouteMatch,
+ 
   useHistory,
 } from "react-router-dom";
 import Login from "./Login";

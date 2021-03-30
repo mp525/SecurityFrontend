@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 
 const mainURL = "http://localhost:8080/jpareststarter";
 const mainURLx = "https://vn41.dk/devops-starter";
@@ -12,6 +11,7 @@ const getAllBookTitles = "/api/book";
 const addBook = "/api/book";
 const deleteBookEnd = "/api/book/";
 const loanEnd = "/api/book/loan";
+const profile="/api/info/profile/"
 
 export {
     mainURL,
@@ -24,5 +24,5 @@ export {
     getAllBookTitles,
     addBook,
     deleteBookEnd,
-    loanEnd
+    loanEnd,profile
 };
