@@ -9,7 +9,8 @@ import {
     getAllBookTitles,
     addBook,
     deleteBookEnd,
-    loanEnd
+    loanEnd,
+    profile
     } from "./settings";
 
  
@@ -120,7 +121,14 @@ const deleteBook = (delBook, callback) => {
   });
 };
 
-
+const fetchProfileInfo=(name1,callback)=>{
+  const options = makeOptions("GET", false);
+  return fetch(mainURL + profile+name1, options)
+  .then(handleHttpErrors)
+  .then((data) => {
+    callback(data);
+  });
+}
 const makeOptions= (method,addToken,body) =>{
    var opts = {
      method: method,
@@ -153,7 +161,9 @@ const makeOptions= (method,addToken,body) =>{
      fetchAllBooks,
      postBook,
      deleteBook,
-     makeLoan
+     makeLoan,
+     fetchProfileInfo
+     
  }
 }
 const facade = apiFacade();
