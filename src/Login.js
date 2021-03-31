@@ -11,14 +11,14 @@ function Login({ loggedIn, loginMsg, setLoginStatus }) {
     return (
       <div>
         <h2>{loginMsg}</h2>
-        <em>
+        {/* <em>
           This simulates a real login page. Here you just need to press the button.
         </em>
         <em>
           In a real application you obviously will need to add your credentials,
           and login via the server.
-        </em>
-        <br/>
+        </em> */}
+        <p>Click here to logout</p>
         <button onClick={handleButton}>{loginMsg}</button>
       </div>
     );

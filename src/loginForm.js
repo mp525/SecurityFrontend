@@ -18,8 +18,14 @@ function LogInForm({ login, errorMes ,setErrorMes}) {
     }
    
     return (
-      <div>
-        <h2>Login</h2>
+      <div align="center">
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <h2>Welcome to our website!</h2>
+        <br/>
+        <h3>Login to continue</h3>
         <form onChange={onChange} >
           <input placeholder="User Name" id="username" />
           <input placeholder="Password" id="password" />

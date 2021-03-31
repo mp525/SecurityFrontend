@@ -5,7 +5,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  
+  Redirect,
   NavLink,
   useLocation,
  
@@ -18,6 +18,7 @@ import LoginForm from "./loginForm";
 import Userpage from "./Userpage";
 import Adminpage from "./Adminpage";
 import ProfilePage from "./ProfilePage"
+import FrontPage from "./FrontPage";
 function App() {
   const [errorMes, setErrorMes] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -49,14 +50,42 @@ function App() {
       <Header loginMsg={loggedIn ? "Logout" : "Login"} loggedIn={loggedIn} />
       <Switch>
         <Route exact path="/">
-          <Home />
+         {/*  <Home /> */}
+         {loggedIn && (
+           <>
+           {history.push("/frontpage")}
+           {/* <Redirect to="/frontpage"/> */}
+           </>
+         )}
+         {!loggedIn && (
+            <LoginForm
+              errorMes={errorMes}
+              setErrorMes={setErrorMes}
+              login={login}
+            />
+          )}
+         {/* {!loggedIn ? (
+            <LoginForm
+              errorMes={errorMes}
+              setErrorMes={setErrorMes}
+              login={login}
+            />
+          ) : (
+            //TODO: sørg for at man kan logge ud på en anden måde
+            <div>
+              <Redirect to="/frontpage" />
+              
+              <LoggedIn />
+              <button onClick={logout}>Logout</button>
+            </div>
+          )} */}
         </Route>
         <Route path="/page1">
           {/* Change */}
           <FetchDefault />
         </Route>
-        <Route path="/page2">
-          <FetchUserCount />
+        <Route path="/frontpage">
+          <FrontPage />
         </Route>
         <Route path="/page3">
           {/* <User /> */}
@@ -66,20 +95,12 @@ function App() {
           {/* <Admin /> */}
           <Adminpage />
         </Route>
-        <Route path="/login">
-          {!loggedIn ? (
-            <LoginForm
-              errorMes={errorMes}
-              setErrorMes={setErrorMes}
-              login={login}
-            />
-          ) : (
-            <div>
-              <LoggedIn />
-              <button onClick={logout}>Logout</button>
-            </div>
-          )}
+        <Route path="/logout">
+          <Login loggedIn={loggedIn} loginMsg={loggedIn ? "Logout" : "Login"} setLoginStatus={setLoginStatus}/>
         </Route>
+        {/* <Route path="/login">
+          
+        </Route> */}
         <Route path="*">
           <NoMatch />
         </Route>
@@ -108,58 +129,53 @@ function FetchDefault() {
   );
 }
 
-function FetchUserCount() {
-  const [count, setCount] = useState();
+/* function FrontPage() {
 
   useEffect(() => {
-    facade.fetchCount(setCount);
+   
   }, []);
   
   return (
     <div>
-      <h3>Amount of users in database:</h3>
-      <p>{count}</p>
+      <h1>TODO: posts frontpage</h1>
     </div>
   );
-}
+} */
 
 function Header({ loggedIn, loginMsg }) {
   return (
     <ul className="header">
-      <li>
-        <NavLink exact activeClassName="active" to="/">
+      
+      
+      {loggedIn && (
+        <>
+        <li>
+        <NavLink activeClassName="active" to="/frontpage">
           Home
         </NavLink>
       </li>
-      <li>
-        <NavLink activeClassName="active" to="/page1">
-          Page 1
-        </NavLink>
-      </li>
-      <li>
-        <NavLink activeClassName="active" to="/page2">
-          Page2
-        </NavLink>
-      </li>
-      {loggedIn && (
-        <>
           <li>
             <NavLink activeClassName="active" to="/page3">
-              Page 3
+              Profile
             </NavLink>
           </li>
           <li>
-            <NavLink exact activeClassName="active" to="/page4">
-              Page 4
+            <NavLink exact activeClassName="active" to="/logout">
+              Logout
             </NavLink>
           </li>
         </>
       )}
-      <li>
-        <NavLink exact activeClassName="active" to="/login">
-          {loginMsg}
+      {!loggedIn && (
+        <li>
+        <NavLink exact activeClassName="active" to="/">
+          {/* {loginMsg} */}
+          <Redirect to="/"/>
+          Login page
         </NavLink>
       </li>
+      )}
+      
     </ul>
   );
 }
