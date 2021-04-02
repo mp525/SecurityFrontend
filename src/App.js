@@ -1,8 +1,6 @@
-import logo from "./logo.svg";
 import "./App.css";
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
@@ -13,9 +11,7 @@ import {
 } from "react-router-dom";
 import Login from "./Login";
 import facade from "./apiFacade";
-import LoggedIn from "./LoggedIn";
 import LoginForm from "./loginForm";
-import Userpage from "./Userpage";
 import Adminpage from "./Adminpage";
 import ProfilePage from "./ProfilePage"
 import FrontPage from "./FrontPage";
@@ -24,10 +20,10 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   let history = useHistory();
 
-  const logout = () => {
+/*   const logout = () => {
     facade.logout();
     setLoggedIn(false);
-  };
+  }; */
   const login = (user, pass) => {
     facade
       .login(user, pass)
@@ -160,6 +156,11 @@ function Header({ loggedIn, loginMsg }) {
             </NavLink>
           </li>
           <li>
+            <NavLink exact activeClassName="active" to="/page4">
+              Adminpage
+            </NavLink>
+          </li>
+          <li>
             <NavLink exact activeClassName="active" to="/logout">
               Logout
             </NavLink>
@@ -189,138 +190,7 @@ function NoMatch() {
   );
 }
 
-function Home() {
-  return (
-    <>
-      <h3>Use instructions</h3>
-      <p>
-        In settings.js, change the URL's to match the current project.<br/>
-        Refactor navlinks to match project domain.<br/>
-        Page 1 diplayes fetched results from default endpoint in backend.<br/>
-        Page 2 is a blank slate. <br/>
-        Login page allows a user to login, if username and password is in the database.<br/>
-        Page 3 (after login) shows info about the user.<br/>
-        Page 4 (after login) shows info about admin user.
-      </p>
-    </>
-  );
-}
-
-function Placeholder() {
-  return <h3>TODO</h3>;
-}
-
-// Can be deleted, moved to Userpage
-function User() {
-  const [errorUser, setErrorUser] = useState("");
-  const [dataFromServer, setDataFromServer] = useState("Error");
-  const [title, setTitle] = useState("");
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    facade
-      .fetchDataUser()
-      .then((data) => setDataFromServer(data.msg))
-      .catch((err) => {
-        err.fullError.then((err) => {
-          setErrorUser(err.message);
-        });
-      });
-  }, []);
- 
-  const handleChange = (event) => {
-    const target = event.target;
-    const property = target.id;
-    const value = target.value;
-    setTitle(value);
-  };
-
-  const submitTitle = () => {
-    facade.fetchBookByTitle(setBooks, title);
-  }
-
-  return (
-    <div>
-      <h3>{dataFromServer}</h3>
-      <p>{errorUser}</p>
-      {facade.isAdmin().indexOf("user") !== -1 && (
-        <>
-        <p>Search by title</p>
-      <input
-      type="text"
-      id="bookTitle"
-      onChange={handleChange}
-      />
-      <button onClick={submitTitle}>
-        Find books
-      </button>
-      <br/>
-      <br/>
-      <table>
-        <thead>
-          <tr>
-            <th>ISBN Number</th>
-            <th>Book Title</th>
-            <th>Publisher</th>
-            <th>Published Year</th>
-            <th>Author(s)</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {books.map((x) => {
-            return(
-              <>
-              <tr>
-                <td>{x.isbn}</td>
-                <td>{x.title}</td>
-                <td>{x.publisher}</td>
-                <td>{x.publishYear}</td>
-                <td>{x.authors.map((y) => {
-                  return(
-                    <p>{y.name}</p>
-                  );
-                })}</td>
-              </tr>
-              </>
-            );
-          })}
-        </tbody>
-      </table>
-      <p>List of all books here</p>
-        </>
-      )}
-      
-    </div>
-  );
-}
 
 // Can be deleted, moved to Adminpage
-function Admin() {
-  const [errorAdmin, setErrorAdmin] = useState("");
-  const [dataFromServer, setDataFromServer] = useState("Error!");
-
-  useEffect(() => {
-    facade
-      .fetchDataAdmin()
-      .then((data) => setDataFromServer(data.msg))
-      .catch((err) => {
-        err.fullError.then((err) => {
-          setErrorAdmin(err.message);
-        });
-      });
-  }, []);
-
-  return (
-    <div>
-      <h3>{dataFromServer}</h3>
-      <p>{errorAdmin}</p>
-      {facade.isAdmin().indexOf("admin") !== -1 && (
-        <>
-        <p>Test</p>
-        </>
-      )}
-    </div>
-  );
-}
 
 export default App;

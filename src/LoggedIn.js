@@ -1,4 +1,3 @@
-import facade from "./apiFacade";
 import React, { } from 'react';
 
 function LoggedIn() {
