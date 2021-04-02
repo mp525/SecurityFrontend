@@ -9,7 +9,7 @@ function Adminpage() {
   const [errorAdmin, setErrorAdmin] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error!");
   const [users, setUsers] = useState([]);
-
+  const [click, setClick] = useState(false);
   useEffect(() => {
     facade
       .fetchDataAdmin()
@@ -27,13 +27,17 @@ function Adminpage() {
       .then((data) => setUsers(data))
       .catch(err=>console.log(err))
     
-    
-  }, [dataFromServer]);
+  },[]);
+
+  const submitTitle = () => {
+    facade.fetchAllProfile(setUsers)
+  };
 
 return (
   <div>
     <h3>{dataFromServer}</h3>
     <p>{errorAdmin}</p>
+    <button onClick={submitTitle} className="myButton"></button>
     {facade.isAdmin().indexOf("admin") !== -1 && (
       <>
       <Table className="table">
@@ -54,8 +58,14 @@ return (
                   </tr>
               )})
         )}
-         {console.log(users)}
+         {users&& console.log(users)}
         </tbody>
+        <h1>{click &&(
+          users.map((x) => {      
+              return (
+                  <h1>{x.length}</h1>
+              )})
+        )}</h1>
       </Table>
       </>
     )}
