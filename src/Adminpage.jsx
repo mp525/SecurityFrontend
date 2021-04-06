@@ -37,6 +37,8 @@ function Adminpage() {
 
 return (
   <div align="center" className="BlueBC">
+
+    
     <h1 className="OB">Welcome to the Admin Page</h1>
     <br/>
     <div className="info">

@@ -59,8 +59,13 @@ table, th, td {
   color: rgb(231, 231, 231);
 
  }
+ 
+.title {
+  color: grey;
+  font-size: 18px;
+}
  .pictures{
-  width: 50%;   
+  width: 51%;   
   align-content: center;
   background-color: #eeeeee;
   color: rgb(36, 36, 36);
@@ -108,4 +113,11 @@ table, th, td {
 }
 .OB{
  color: aliceblue;
+}
+.card{
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+color: black;  
+  text-align: center;
+  font-family: arial;
 }
