@@ -57,7 +57,8 @@ table, th, td {
   width: 100%;   
   align-content: center;
   color: rgb(231, 231, 231);
-
+  background-color: rgb(58, 58, 58);
+  box-shadow: rgb(27, 27, 27) 2px 6px 6px;
  }
  
 .title {
