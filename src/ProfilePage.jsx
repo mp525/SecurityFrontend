@@ -17,6 +17,7 @@ function Userpage() {
   const [userName,setUsername]=useState();
   const [email,setEmail]=useState();
   const [picture,setPic]=useState();
+  const [posts, setPosts]=useState([]);
   useEffect(() => {
     facade
       .fetchDataUser()
@@ -26,8 +27,8 @@ function Userpage() {
           setErrorUser(err.message);
         });
       });
-  }, []);
-
+  }, [dataFromServer]);
+  
   useEffect(() => {
     if(dataFromServer){
       facade
@@ -39,7 +40,9 @@ function Userpage() {
     }
     
   }, []);
-
+  const submitTitle = () => {
+    facade.fetchAllPosts(dataFromServer.substring(9, 13),setPosts)
+  };
   useEffect(()=>{
     if(profile!=null){
       setFname(profile.firstName);
@@ -58,7 +61,7 @@ function Userpage() {
          
   <h1>Name: {fname}</h1>
         {picture && 
-        <img src={picture} alt="John" style="width:100%"/>
+        <img src={picture} style="width:100%"/>
         } {!picture &&<h5 className="title">No profile picture</h5>}
 
   <p class="title">Username: {userName}</p>
@@ -86,7 +89,11 @@ function Userpage() {
             <br /><br />
 
           </div>
-          
+          <div>
+            {//posts && console.log(posts[1].content)
+            }
+            
+          </div>
           <div align="center">
             <div className="sixth">
             <form action = "/upload" method = "post" enctype = "multipart/form-data" >
@@ -95,8 +102,32 @@ function Userpage() {
           </form>
             </div>
           </div>
-        </div>
-        <br /><br /><br /><br />  <br /><br />       <br /><br />
+        </div><br/><br/><br/>
+        <div className="info">
+          <h3>Your Posts</h3>
+          <Button   onClick={submitTitle} className="myButton">See Posts<br/></Button>
+
+          <table className="table">
+            <thead><tr><th>Content</th><th>Posted</th></tr></thead>
+            <tbody>
+               
+
+           
+          
+            {posts &&(
+          posts.map((x,idx) => {      
+              return (
+                  <tr key={idx}>
+                  <td>{x.content}</td>
+                  <td>{x.posted}</td>
+                  
+                  </tr>
+              )})
+        )}
+         </tbody>
+        </table>
+          </div>
+        <br /><br /><br /><br /> 
         <br /><br /><br /><br /><br /><br />
         
       </div>

@@ -68,7 +68,7 @@ return (
                   <td>{x.lastName}</td>
                   <td>{x.userName}</td>
                   <td>{x.email}</td>
-                  <td><Button variant="warning">Edit</Button>{' '}</td>
+                  <td><Button variant="warning">Edit</Button> </td>
                   <td><Button variant="danger">Delete</Button> </td>
                   </tr>
               )})

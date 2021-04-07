@@ -13,6 +13,7 @@ const deleteBookEnd = "/api/book/";
 const loanEnd = "/api/book/loan";
 const profile="/api/info/profile/"
 const allprofile="/api/info/Users"
+const userposts="/api/info/allUserPosts/"
 export {
     mainURL,
     userInfoEndpoint,
@@ -24,5 +25,5 @@ export {
     getAllBookTitles,
     addBook,
     deleteBookEnd,
-    loanEnd,profile,allprofile
+    loanEnd,profile,allprofile,userposts
 };
