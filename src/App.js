@@ -34,7 +34,7 @@ function App() {
 
       .then((res) => setLoggedIn(true))
       .catch((err) => {
-        err.fullError.then((err) => {
+        err.then((err) => {
           setErrorMes(err.message);
         });
       });
@@ -295,7 +295,7 @@ function User() {
 }
 
 // Can be deleted, moved to Adminpage
-function Admin() {
+/* function Admin() {
   const [errorAdmin, setErrorAdmin] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error!");
 
@@ -321,6 +321,6 @@ function Admin() {
       )}
     </div>
   );
-}
+} */
 
 export default App;

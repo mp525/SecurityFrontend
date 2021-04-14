@@ -11,7 +11,8 @@ const getAllBookTitles = "/api/book";
 const addBook = "/api/book";
 const deleteBookEnd = "/api/book/";
 const loanEnd = "/api/book/loan";
-const profile="/api/info/profile/"
+const profile="/api/info/profile/";
+const allPosts = "/api/info/allPosts";
 
 export {
     mainURL,
@@ -24,5 +25,7 @@ export {
     getAllBookTitles,
     addBook,
     deleteBookEnd,
-    loanEnd,profile
+    loanEnd,
+    profile,
+    allPosts
 };
