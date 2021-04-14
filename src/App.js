@@ -30,7 +30,7 @@ function App() {
 
       .then((res) => setLoggedIn(true))
       .catch((err) => {
-        err.fullError.then((err) => {
+        err.then((err) => {
           setErrorMes(err.message);
         });
       });

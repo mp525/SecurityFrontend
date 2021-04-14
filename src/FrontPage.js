@@ -9,43 +9,68 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
+import facade from "./apiFacade";
 
 function FrontPage() {
-  const [posts, setPosts] = [];
+  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    facade.fetchAllPosts(setPosts);
+  }, []);
 
   return (
     <div className="App">
       <Container fluid>
         <Row className="justify-content-md-center">
-          <Col md={2}>
-            <Card
-              className="mb-3"
-              style={{ color: "#000", backgroundColor: "#51c5e5" }}
-            >
+          <Col xs>
+            <Card className="mb-3" bg="secondary" border="light">
               <Card.Body>
                 <Card.Title>TODO</Card.Title>
+                <Card.Text>Suggestion: Maybe make post vindue her, eller venner/following.</Card.Text>
               </Card.Body>
             </Card>
           </Col>
-          <Col xs={8}> {/*Dette er posts kolonnen: */}
-            <Card className="mb-3" style={{ color: "#000" }}>
+          <Col xs={6}>
+            {/*Dette er posts kolonnen: */}
+            <Card className="mb-3" style={{ color: "#000" }} align="center">
+              <Card.Header align="center">Post Wall</Card.Header>
               <Card.Body>
-                <Card.Title>TODO: posts frontpage</Card.Title>
+                {/* <Card.Title>Post wall</Card.Title> */}
+                {posts.list && (
+                  <>
+                    {posts.list.map((post) => {
+                      return (
+                        <>
+                          <Card
+                            bg="light"
+                            border="success"
+                            style={{ width: "40rem" }}
+                          >
+                            <Card.Title as="h6">
+                              Post by {post.user.userName}
+                            </Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted" as="p">
+                              {post.posted}
+                            </Card.Subtitle>
+                            <Card.Body>
+                              <Card.Text>{post.content}</Card.Text>
+                            </Card.Body>
+                          </Card>
+                          <br />
+                        </>
+                      );
+                    })}
+                  </>
+                )}
               </Card.Body>
+              <p>TODO: Whitespace under all posts/blue maybe make prettier.</p>
             </Card>
-            {/* {posts.map((post)=>{
-
-            })} */}
           </Col>
-          <Col>
-            <Card
-              className="mb-3"
-              style={{ color: "#000", backgroundColor: "#51c5e5" }}
-            >
+          <Col xs>
+            <Card className="mb-3" bg="secondary" border="light">
               <Card.Body>
                 <Card.Title>TODO</Card.Title>
+                <Card.Text>Suggestion: Maybe all users in system here?</Card.Text>
               </Card.Body>
             </Card>
           </Col>

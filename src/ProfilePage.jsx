@@ -42,7 +42,7 @@ function Userpage() {
     
   }, []);
   const getAll = () => {
-    facade.fetchAllPosts(dataFromServer.substring(9, 13),setPosts)
+    facade.fetchAllUserPosts(dataFromServer.substring(9, 13),setPosts)
   };
   const getByDate = () => {
     posts.sort(x=>function(){
@@ -82,7 +82,7 @@ function Userpage() {
         <h1>Profile Page for {dataFromServer.substring(9, 20)}</h1>
         <p>{errorUser}</p>
         <Row>
-        <div className="card">
+        <div className="cardCustom">
          
   <h1>Name: {fname}</h1>
         {picture && 

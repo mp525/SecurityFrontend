@@ -10,7 +10,10 @@ import {
     addBook,
     deleteBookEnd,
     loanEnd,
-    profile,allprofile,userposts
+    profile,
+    allPosts,
+    allprofile,
+    userposts
     } from "./settings";
 
  
@@ -129,6 +132,17 @@ const fetchProfileInfo=(name1,callback)=>{
     callback(data);
   });
 }
+
+const fetchAllPosts = (callback) => {
+  const options = makeOptions("GET", true);
+  return fetch(mainURL + allPosts, options)
+  .then(handleHttpErrors)
+  .then((data) => {
+    callback(data);
+  });
+};
+
+
 const fetchAllProfile=(callback)=>{
   const options = makeOptions("GET", false);
   return fetch(mainURL + allprofile, options)
@@ -137,7 +151,7 @@ const fetchAllProfile=(callback)=>{
         callback(data);
       });
 }
-const fetchAllPosts=(name1,callback)=>{
+const fetchAllUserPosts=(name1,callback)=>{
   const options = makeOptions("GET", false);
   return fetch(mainURL + userposts+name1, options)
   .then(handleHttpErrors)
@@ -180,7 +194,9 @@ const makeOptions= (method,addToken,body) =>{
      deleteBook,
      makeLoan,
      fetchProfileInfo,
-     fetchAllProfile,fetchAllPosts
+     fetchAllPosts,
+     fetchAllProfile,
+     fetchAllUserPosts
      
  }
 }

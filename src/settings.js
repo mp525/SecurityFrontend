@@ -11,6 +11,7 @@ const getAllBookTitles = "/api/book";
 const addBook = "/api/book";
 const deleteBookEnd = "/api/book/";
 const loanEnd = "/api/book/loan";
+const allPosts = "/api/info/allPosts";
 const profile="/api/info/profile/"
 const allprofile="/api/info/Users"
 const userposts="/api/info/allUserPosts/"
@@ -25,5 +26,9 @@ export {
     getAllBookTitles,
     addBook,
     deleteBookEnd,
-    loanEnd,profile,allprofile,userposts
+    loanEnd,
+    profile,
+    allPosts,
+    allprofile,
+    userposts
 };
