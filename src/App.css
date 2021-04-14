@@ -58,10 +58,16 @@ table, th, td {
   width: 100%;   
   align-content: center;
   color: rgb(231, 231, 231);
-
+  background-color: rgb(58, 58, 58);
+  box-shadow: rgb(27, 27, 27) 2px 6px 6px;
  }
+ 
+.title {
+  color: grey;
+  font-size: 18px;
+}
  .pictures{
-  width: 50%;   
+  width: 51%;   
   align-content: center;
   background-color: #eeeeee;
   color: rgb(36, 36, 36);
@@ -69,7 +75,14 @@ table, th, td {
 
  }
 
+ .BlueBC{
+ 
+  align-content: center;
+  background-color: #01115e;
+  color: rgb(36, 36, 36);
+  box-shadow: 4px 4px 4px rgb(0, 0, 0); 
 
+ }
  #upload {
   opacity: 0;
 }
@@ -99,4 +112,15 @@ table, th, td {
 .sixth{
   align-content: center;
   width: 16%;
+}
+.OB{
+ color: aliceblue;
+}
+.cardCustom{
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+color: black;  
+  text-align: center;
+  font-family: arial;
+  background: rgb(255, 255, 255);
 }

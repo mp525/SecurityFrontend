@@ -11,7 +11,9 @@ import {
     deleteBookEnd,
     loanEnd,
     profile,
-    allPosts
+    allPosts,
+    allprofile,
+    userposts
     } from "./settings";
 
  
@@ -141,6 +143,23 @@ const fetchAllPosts = (callback) => {
 };
 
 
+const fetchAllProfile=(callback)=>{
+  const options = makeOptions("GET", false);
+  return fetch(mainURL + allprofile, options)
+  .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+      });
+}
+const fetchAllUserPosts=(name1,callback)=>{
+  const options = makeOptions("GET", false);
+  return fetch(mainURL + userposts+name1, options)
+  .then(handleHttpErrors)
+      .then((data) => {
+        callback(data);
+        console.log(mainURL + userposts+name1);
+      });
+}
 const makeOptions= (method,addToken,body) =>{
    var opts = {
      method: method,
@@ -175,7 +194,9 @@ const makeOptions= (method,addToken,body) =>{
      deleteBook,
      makeLoan,
      fetchProfileInfo,
-     fetchAllPosts
+     fetchAllPosts,
+     fetchAllProfile,
+     fetchAllUserPosts
      
  }
 }
