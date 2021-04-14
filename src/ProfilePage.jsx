@@ -17,6 +17,7 @@ function Userpage() {
   const [userName,setUsername]=useState();
   const [email,setEmail]=useState();
   const [picture,setPic]=useState();
+  const [word,setWord]=useState();
   const [posts, setPosts]=useState([]);
   useEffect(() => {
     facade
@@ -40,9 +41,33 @@ function Userpage() {
     }
     
   }, []);
-  const submitTitle = () => {
+  const getAll = () => {
     facade.fetchAllPosts(dataFromServer.substring(9, 13),setPosts)
   };
+  const getByDate = () => {
+    posts.sort(x=>function(){
+      let arr = [{}];
+      return new Date(x.date) - new Date(x.date);
+    });
+  };
+  const getByWord = () => {
+    let arr=[];
+    posts.filter(x=>{
+      if(x!=null){
+        if (x.content.includes(word)) {
+          arr.push(x);
+        }
+      }
+      
+    })
+     setPosts(arr);
+  };
+  const handleChange = (event) => {
+    const target = event.target; 
+     const value = target.value;
+     console.log(value);
+     setWord(value)};
+//begyndt på ikke implementeret kan ikke nå mere så her er det indtil nu
   useEffect(()=>{
     if(profile!=null){
       setFname(profile.firstName);
@@ -105,8 +130,10 @@ function Userpage() {
         </div><br/><br/><br/>
         <div className="info">
           <h3>Your Posts</h3>
-          <Button   onClick={submitTitle} className="myButton">See Posts<br/></Button>
-
+          <Button   onClick={getAll} className="myButton">See Posts<br/></Button>
+          <Button   onClick={getByDate} className="myButton">See Newest<br/></Button>
+          <Button   onClick={getByWord} className="myButton">See all with word<br/></Button>
+          <input type="text" value={word} onChange={handleChange} />
           <table className="table">
             <thead><tr><th>Content</th><th>Posted</th></tr></thead>
             <tbody>
