@@ -125,7 +125,7 @@ const deleteBook = (delBook, callback) => {
 };
 
 const fetchProfileInfo=(name1,callback)=>{
-  const options = makeOptions("GET", false);
+  const options = makeOptions("GET", true);
   return fetch(mainURL + profile+name1, options)
   .then(handleHttpErrors)
   .then((data) => {
@@ -144,7 +144,7 @@ const fetchAllPosts = (callback) => {
 
 
 const fetchAllProfile=(callback)=>{
-  const options = makeOptions("GET", false);
+  const options = makeOptions("GET", true);
   return fetch(mainURL + allprofile, options)
   .then(handleHttpErrors)
       .then((data) => {
@@ -152,7 +152,7 @@ const fetchAllProfile=(callback)=>{
       });
 }
 const fetchAllUserPosts=(name1,callback)=>{
-  const options = makeOptions("GET", false);
+  const options = makeOptions("GET", true);
   return fetch(mainURL + userposts+name1, options)
   .then(handleHttpErrors)
       .then((data) => {

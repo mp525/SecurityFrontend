@@ -17,7 +17,7 @@ function Userpage() {
   const [userName,setUsername]=useState();
   const [email,setEmail]=useState();
   const [picture,setPic]=useState();
-  const [word,setWord]=useState();
+  const [word,setWord]=useState("");
   const [posts, setPosts]=useState([]);
   useEffect(() => {
     facade
@@ -44,12 +44,7 @@ function Userpage() {
   const getAll = () => {
     facade.fetchAllUserPosts(dataFromServer.substring(9, 13),setPosts)
   };
-  const getByDate = () => {
-    posts.sort(x=>function(){
-      let arr = [{}];
-      return new Date(x.date) - new Date(x.date);
-    });
-  };
+ 
   const getByWord = () => {
     let arr=[];
     posts.filter(x=>{
@@ -92,7 +87,7 @@ function Userpage() {
   <p class="title">Username: {userName}</p>
   <p class="title">Last name: {lname}</p>
   
-  
+  {dataFromServer&&  console.log(dataFromServer)}
         </div>
         <div className="info">
           <h3 align="center">{dataFromServer.substring(9, 13)}'s profile information</h3>
@@ -131,7 +126,6 @@ function Userpage() {
         <div className="info">
           <h3>Your Posts</h3>
           <Button   onClick={getAll} className="myButton">See Posts<br/></Button>
-          <Button   onClick={getByDate} className="myButton">See Newest<br/></Button>
           <Button   onClick={getByWord} className="myButton">See all with word<br/></Button>
           <input type="text" value={word} onChange={handleChange} />
           <table className="table">

@@ -1,5 +1,5 @@
 
-const mainURL = "http://localhost:8080/jpareststarter";
+const mainURL = "http://localhost:8085/jpareststarter";
 //const mainURL = "https://vn41.dk/devops-starter";
 const userInfoEndpoint = "/api/info/user";
 const adminInfoEndpoint = "/api/info/admin";
