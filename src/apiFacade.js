@@ -8,12 +8,12 @@ import {
     searchBook,
     getAllBookTitles,
     addBook,
-    deleteBookEnd,
+    
     loanEnd,
     profile,
     allPosts,
     allprofile,
-    userposts
+    userposts,deletePost,editPost
     } from "./settings";
 
  
@@ -115,13 +115,19 @@ const makeLoan = (newLoan) => {
   .then(handleHttpErrors);
 };
 
-const deleteBook = (delBook, callback) => {
+const deletePosten = (id) => {
   const options = makeOptions("DELETE", true);
-  return fetch(mainURL + deleteBookEnd + delBook, options)
-  .then(handleHttpErrors)
+  let deleteUrl=mainURL + deletePost + id;
+  return fetch(deleteUrl, options)
   .then((data) => {
-    callback(data);
+    console.log(data)
   });
+};
+const editPosten = async (postDTO) => {
+  const options = makeOptions("PUT", true,postDTO);
+  console.log(mainURL+editPost);
+  const data = await fetch(mainURL + editPost, options);
+  console.log(data);
 };
 
 const fetchProfileInfo=(name1,callback)=>{
@@ -191,12 +197,12 @@ const makeOptions= (method,addToken,body) =>{
      isAdmin, 
      fetchAllBooks,
      postBook,
-     deleteBook,
+     deletePosten,
      makeLoan,
      fetchProfileInfo,
      fetchAllPosts,
      fetchAllProfile,
-     fetchAllUserPosts
+     fetchAllUserPosts,editPosten
      
  }
 }

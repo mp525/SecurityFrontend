@@ -15,6 +15,8 @@ const allPosts = "/api/info/allPosts";
 const profile="/api/info/profile/"
 const allprofile="/api/info/Users"
 const userposts="/api/info/allUserPosts/"
+const deletePost="/api/info/deletePost/"
+const editPost="/api/info/editPost"
 export {
     mainURL,
     userInfoEndpoint,
@@ -30,5 +32,6 @@ export {
     profile,
     allPosts,
     allprofile,
-    userposts
+    userposts,
+    deletePost,editPost
 };
