@@ -28,13 +28,9 @@ function LogInForm({ login, errorMes, setErrorMes }) {
             Welcome to our website!
           </Card.Title>
           <Card.Text className="text-center">Login to continue</Card.Text>
-          <Form onSubmit={performLogin}>
+          <Form onChange={onChange}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                type="email"
-                placeholder="User Name"
-                id="username"
-              />
+              <Form.Control type="text" placeholder="User Name" id="username" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -50,28 +46,30 @@ function LogInForm({ login, errorMes, setErrorMes }) {
               size="lg"
               type="submit"
               block
+              onClick={performLogin}
             >
               Login
             </Button>
           </Form>
         </Card.Body>
       </Card>
-      {/*div align="center">
-          <br />
-          <br />
-          <br />
-          <br />
-          <h2>Welcome to our website!</h2>
-          <br />
-          <h3>Login to continue</h3>
-          <form onChange={onChange}>
-            <input placeholder="User Name" id="username" />
-            <input placeholder="Password" id="password" />
-            <button onClick={performLogin}>Login</button>
-          </form>
-          <p>{errorMes}</p>
-        </div>
-        */}
+      {/*
+      <div align="center">
+        <br />
+        <br />
+        <br />
+        <br />
+        <h2>Welcome to our website!</h2>
+        <br />
+        <h3>Login to continue</h3>
+        <form onChange={onChange}>
+          <input placeholder="User Name" id="username" />
+          <input placeholder="Password" id="password" />
+          <button onClick={performLogin}>Login</button>
+        </form>
+        <p>{errorMes}</p>
+      </div>
+      */}
     </div>
   );
 }
