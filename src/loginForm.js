@@ -56,7 +56,7 @@ function LogInForm({ login, errorMes, setErrorMes }) {
           </Form>
         </Card.Body>
       </Card>
-      {/*div align="center">
+      {/* <div align="center">
           <br />
           <br />
           <br />
@@ -70,8 +70,8 @@ function LogInForm({ login, errorMes, setErrorMes }) {
             <button onClick={performLogin}>Login</button>
           </form>
           <p>{errorMes}</p>
-        </div>
-        */}
+        </div> */}
+       
     </div>
   );
 }
