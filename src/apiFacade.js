@@ -132,9 +132,9 @@ const editPosten = async (postDTO) => {
   console.log(data);
 };
 
-const fetchProfileInfo=(name1,callback)=>{
+const fetchProfileInfo=(callback)=>{
   const options = makeOptions("GET", true);
-  return fetch(mainURL + profile+name1, options)
+  return fetch(mainURL + profile, options)
   .then(handleHttpErrors)
   .then((data) => {
     callback(data);

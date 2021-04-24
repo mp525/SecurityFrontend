@@ -31,7 +31,7 @@ function Userpage() {
   }, [dataFromServer]);
   useEffect(() => {
       facade
-        .fetchProfileInfo(dataFromServer.substring(15,20), setProfile)
+        .fetchProfileInfo(setProfile)
         .then((data) => setProfile(data))
         .catch((err) => {
           throw (err)
