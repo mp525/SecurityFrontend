@@ -54,24 +54,22 @@ function LogInForm({ login, errorMes, setErrorMes }) {
           </Form>
         </Card.Body>
       </Card>
-      {/*
-      <div align="center">
-        <br />
-        <br />
-        <br />
-        <br />
-        <h2>Welcome to our website!</h2>
-        <br />
-        <h3>Login to continue</h3>
-        <form onChange={onChange}>
-          <input placeholder="User Name" id="username" />
-          <input placeholder="Password" id="password" />
-          <button onClick={performLogin}>Login</button>
-        </form>
-        <p>{errorMes}</p>
-      </div>
-      */}
-      </div>
+      {/* <div align="center">
+          <br />
+          <br />
+          <br />
+          <br />
+          <h2>Welcome to our website!</h2>
+          <br />
+          <h3>Login to continue</h3>
+          <form onChange={onChange}>
+            <input placeholder="User Name" id="username" />
+            <input placeholder="Password" id="password" />
+            <button onClick={performLogin}>Login</button>
+          </form>
+          <p>{errorMes}</p>
+        </div> */}
+       </div>
     </div>
   );
 }
