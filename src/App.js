@@ -46,7 +46,7 @@ function App() {
       <Header loginMsg={loggedIn ? "Logout" : "Login"} loggedIn={loggedIn} />
       <Container fluid>
         <Row className="">
-          <Col className="m-5 d-flex justify-content-center">
+          <Col>
             <Switch>
               <Route exact path="/">
                 {/*  <Home /> */}

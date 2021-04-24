@@ -22,19 +22,16 @@ function LogInForm({ login, errorMes, setErrorMes }) {
 
   return (
     <div>
+      <div align="center">
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Title className="text-center">
             Welcome to our website!
           </Card.Title>
           <Card.Text className="text-center">Login to continue</Card.Text>
-          <Form onSubmit={performLogin}>
+          <Form onChange={onChange}>
             <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                type="email"
-                placeholder="User Name"
-                id="username"
-              />
+              <Form.Control type="text" placeholder="User Name" id="username" />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -50,6 +47,7 @@ function LogInForm({ login, errorMes, setErrorMes }) {
               size="lg"
               type="submit"
               block
+              onClick={performLogin}
             >
               Login
             </Button>
@@ -71,7 +69,7 @@ function LogInForm({ login, errorMes, setErrorMes }) {
           </form>
           <p>{errorMes}</p>
         </div> */}
-       
+       </div>
     </div>
   );
 }
