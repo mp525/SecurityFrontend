@@ -8,12 +8,14 @@ import {
     searchBook,
     getAllBookTitles,
     addBook,
-    
     loanEnd,
     profile,
     allPosts,
     allprofile,
-    userposts,deletePost,editPost
+    userposts,
+    deletePost,
+    editPost,
+    allPostsAdmin
     } from "./settings";
 
  
@@ -148,6 +150,15 @@ const fetchAllPosts = (callback) => {
   });
 };
 
+const fetchAllPostsAdmin = (callback) => {
+  const options = makeOptions("GET", true);
+  return fetch(mainURL + allPostsAdmin, options)
+  .then(handleHttpErrors)
+  .then((data) => {
+    callback(data);
+  });
+};
+
 
 const fetchAllProfile=(callback)=>{
   const options = makeOptions("GET", true);
@@ -202,7 +213,9 @@ const makeOptions= (method,addToken,body) =>{
      fetchProfileInfo,
      fetchAllPosts,
      fetchAllProfile,
-     fetchAllUserPosts,editPosten
+     fetchAllUserPosts,
+     editPosten,
+     fetchAllPostsAdmin
      
  }
 }
