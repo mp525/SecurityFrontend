@@ -22,6 +22,7 @@ function LogInForm({ login, errorMes, setErrorMes }) {
 
   return (
     <div>
+      <div align="center">
       <Card style={{ width: "18rem" }}>
         <Card.Body>
           <Card.Title className="text-center">
@@ -70,6 +71,7 @@ function LogInForm({ login, errorMes, setErrorMes }) {
         <p>{errorMes}</p>
       </div>
       */}
+      </div>
     </div>
   );
 }
