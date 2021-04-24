@@ -1,5 +1,5 @@
 //const mainURL = "http://localhost:8080/SecurityBackend_war";
-const mainURL = "http://localhost:8080/jpareststarter";
+const mainURL = "http://localhost:8085/jpareststarter";
 //const mainURL = "https://vn41.dk/devops-starter";
 const userInfoEndpoint = "/api/info/user";
 const adminInfoEndpoint = "/api/info/admin";
@@ -13,7 +13,7 @@ const deleteBookEnd = "/api/book/";
 const loanEnd = "/api/book/loan";
 const allPosts = "/api/info/allPosts";
 const allPostsAdmin = "/api/info/allPostsAdmin";
-const profile = "/api/info/profile/";
+const profile = "/api/info/profile";
 const allprofile = "/api/info/Users";
 const userposts = "/api/info/allUserPosts/";
 const deletePost = "/api/info/deletePost/";
