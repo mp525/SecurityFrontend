@@ -117,6 +117,17 @@ const makeLoan = (newLoan) => {
   .then(handleHttpErrors);
 };
 
+const addPosten = async (postDTO) => {
+  const options = makeOptions("POST", true, postDTO);
+  const URL = mainURL + "/api/info/addPost";
+  const newPost = await fetch(URL, options)
+  .then(handleHttpErrors)
+  .then((data) => {
+    console.log(data);
+  });
+  return newPost;
+}
+
 const deletePosten = (id) => {
   const options = makeOptions("DELETE", true);
   let deleteUrl=mainURL + deletePost + id;
@@ -209,6 +220,7 @@ const makeOptions= (method,addToken,body) =>{
      fetchAllBooks,
      postBook,
      deletePosten,
+     addPosten,
      makeLoan,
      fetchProfileInfo,
      fetchAllPosts,

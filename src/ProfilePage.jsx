@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './Footer'
 import PostUserPart from "./ProfilePost"
 import PictureHandling from "./PictureHandling";
+import MakePost from "./ProfileMakePost";
 import {
   Table,
   Button,
@@ -69,6 +70,8 @@ function Userpage() {
             </table>
           </div>
         </Row><br /><br /><br />
+        <MakePost></MakePost>
+        <br/>
         <PictureHandling></PictureHandling>
         <br />
         <PostUserPart></PostUserPart>
