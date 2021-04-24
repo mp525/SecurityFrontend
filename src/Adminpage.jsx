@@ -32,7 +32,7 @@ function Adminpage() {
     facade.fetchAllProfile(setUsers)
   };
   const fetchPosts = () => {
-    facade.fetchAllPosts(setPosts);
+    facade.fetchAllPostsAdmin(setPosts);
   };
   const deletePost = (e) => {
     e.preventDefault();
