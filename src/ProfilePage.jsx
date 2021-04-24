@@ -31,7 +31,7 @@ function Userpage() {
   }, [dataFromServer]);
   useEffect(() => {
       facade
-        .fetchProfileInfo(dataFromServer.substring(9, 13), setProfile)
+        .fetchProfileInfo(dataFromServer.substring(15,20), setProfile)
         .then((data) => setProfile(data))
         .catch((err) => {
           throw (err)
@@ -60,7 +60,7 @@ function Userpage() {
             <p class="title">Last name: {lname}</p>
           </div>
           <div className="info">
-            <h3 align="center">{dataFromServer.substring(9, 13)}'s profile information</h3>
+            <h3 align="center">{dataFromServer.substring(15, 20)}'s profile information</h3>
             <table className="table">
               <thead><tr><th>First name</th><th>Last name</th><th>Email</th><th>Username</th></tr></thead>
               <tbody>
