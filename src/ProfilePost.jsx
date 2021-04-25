@@ -6,13 +6,17 @@ import Footer from './Footer'
 import {
   Table,
   Button,
-  Row
+  Row,Card
 } from "react-bootstrap";
 function ProfilePage() {
     const [errorUser, setErrorUser] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error");
   const [word, setWord] = useState("");
   const [posts, setPosts] = useState([]);
+  const [content,setContent]=useState("")
+  const [edit, setEdit]=useState(false);
+  const [id, setEditID]=useState();
+  const [delText,setDelText]=useState();
   useEffect(() => {
     facade
       .fetchDataUser()
@@ -45,6 +49,36 @@ function ProfilePage() {
     console.log(value);
     setWord(value)
   };
+  const deletePost = (e) => {
+    e.preventDefault();
+    const id = e.target.id;
+    console.log(id);
+    let deltext1=facade.deletePostenU(id);
+    setDelText(deltext1);
+    setTimeout(getAll,2000);
+
+  };
+  const startEdit = (e) => {
+    e.preventDefault();
+    const id1 = e.target.id;
+    setEditID(...id1);
+    setEdit(true);
+  };
+  const editPost = (e) => {
+    e.preventDefault();
+   let tmpDTO={id,content};
+   console.log(tmpDTO);
+    facade.editPostenU(tmpDTO);
+    setTimeout(getAll,2000);
+    setEdit(false);
+  };
+  const editOnChange=(e)=>{
+      const target = e.target; 
+      const property = target.id; 
+      const value = target.value;
+      const tmpContent = value;
+      setContent(tmpContent);
+  }
 return (
 <div className="info">
 <h3>Your Posts</h3>
@@ -60,13 +94,38 @@ return (
           <tr key={idx}>
             <td>{x.content}</td>
             <td>{x.posted}</td>
-
+            <td><Button variant="warning" onClick={startEdit} id={x.id}>Edit</Button>{' '}</td>
+            <td><Button variant="danger" onClick={deletePost} id={x.id}>Delete</Button> </td>
           </tr>
         )
       })
     )}
   </tbody>
 </table>
+{edit && (
+        
+          
+        <Card border="dark" className="BlueBC">
+          <h3>Edit Post: </h3>
+          <form>
+            <input type="text" disabled value={"ID: " + id&& id} />
+            <br />
+            <textarea
+              rows="5"
+              cols="60"
+              width="60%"
+              fontSize="medium"
+              defaultValue={content}
+              id="content"
+              onChange={editOnChange}
+            />
+            <br />
+            <Button onClick={editPost}>Submit change</Button>
+          </form>
+          <br />
+        </Card>
+      )}
+
 </div>
   );
 }

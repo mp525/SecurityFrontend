@@ -15,7 +15,7 @@ import {
     userposts,
     deletePost,
     editPost,
-    allPostsAdmin
+    allPostsAdmin,deletePostU,editPostU
     } from "./settings";
 
  
@@ -142,6 +142,20 @@ const editPosten = async (postDTO) => {
   const data = await fetch(mainURL + editPost, options);
   console.log(data);
 };
+const deletePostenU = (id) => {
+  const options = makeOptions("DELETE", true);
+  let deleteUrl=mainURL + deletePostU + id;
+  return fetch(deleteUrl, options)
+  .then((data) => {
+    console.log(data)
+  });
+};
+const editPostenU = async (postDTO) => {
+  const options = makeOptions("PUT", true,postDTO);
+  console.log(mainURL+editPostU);
+  const data = await fetch(mainURL + editPostU, options);
+  console.log(data);
+};
 
 const fetchProfileInfo=(callback)=>{
   const options = makeOptions("GET", true);
@@ -227,7 +241,9 @@ const makeOptions= (method,addToken,body) =>{
      fetchAllProfile,
      fetchAllUserPosts,
      editPosten,
-     fetchAllPostsAdmin
+     fetchAllPostsAdmin,
+     editPostenU,
+     deletePostenU
      
  }
 }
