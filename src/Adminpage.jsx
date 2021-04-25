@@ -39,6 +39,8 @@ function Adminpage() {
     const id = e.target.id;
     console.log(id);
     facade.deletePosten(id);
+    setTimeout(fetchPosts,2000);
+
   };
   const startEdit = (e) => {
     e.preventDefault();
@@ -51,6 +53,8 @@ function Adminpage() {
    let tmpDTO={id,content};
    console.log(tmpDTO);
     facade.editPosten(tmpDTO);
+    setTimeout(fetchPosts,2000);
+
   };
   const editOnChange=(e)=>{
       const target = e.target; 
