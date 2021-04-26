@@ -5,10 +5,7 @@ import {
     defaultEndpoint,
     loginEndpoint,
     userCount,
-    searchBook,
-    getAllBookTitles,
-    addBook,
-    loanEnd,
+    
     profile,
     allPosts,
     allprofile,
@@ -87,35 +84,11 @@ const fetchCount = (callback) => {
   .then(data => {callback(data)})
 }
 
-const fetchBookByTitle = (callback, title) => {
-  const options = makeOptions("GET", true);
-  return fetch(mainURL + searchBook + title, options)
-  .then(handleHttpErrors)
-  .then((data) => {
-    callback(data);
-  });
-};
 
-const fetchAllBooks = (callback) => {
-  const options = makeOptions("GET", true);
-  return fetch(mainURL + getAllBookTitles, options)
-  .then(handleHttpErrors)
-  .then((data) => {
-    callback(data);
-  });
-};
 
-const postBook = (newBook) => {
-  const options = makeOptions("POST", true, newBook);
-  return fetch(mainURL + addBook, options)
-  .then(handleHttpErrors);
-};
 
-const makeLoan = (newLoan) => {
-  const options = makeOptions("POST", true, newLoan);
-  return fetch(mainURL + loanEnd, options)
-  .then(handleHttpErrors);
-};
+
+
 
 const addPosten = async (postDTO) => {
   const options = makeOptions("POST", true, postDTO);
@@ -229,13 +202,9 @@ const makeOptions= (method,addToken,body) =>{
      fetchDataAdmin,
      fetchDefault,
      fetchCount, 
-     fetchBookByTitle,
      isAdmin, 
-     fetchAllBooks,
-     postBook,
      deletePosten,
      addPosten,
-     makeLoan,
      fetchProfileInfo,
      fetchAllPosts,
      fetchAllProfile,
