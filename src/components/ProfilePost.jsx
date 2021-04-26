@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./App.css";
-import facade from "./apiFacade";
+import "../App.css";
+import facade from "../apiFacade";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './Footer'
 import {
@@ -26,7 +26,7 @@ function ProfilePage() {
           setErrorUser(err.message);
         });
       });
-  }, [dataFromServer]);
+  }, []);
   const getByWord = () => {
     let arr = [];
     posts.filter(x => {
@@ -35,7 +35,6 @@ function ProfilePage() {
           arr.push(x);
         }
       }
-
     })
     setPosts(arr);
   };
@@ -44,15 +43,12 @@ function ProfilePage() {
   };
 
   const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    console.log(value);
+    const value = event.target.value;
     setWord(value)
   };
   const deletePost = (e) => {
     e.preventDefault();
     const id = e.target.id;
-    console.log(id);
     let deltext1=facade.deletePostenU(id);
     setDelText(deltext1);
     setTimeout(getAll,2000);
@@ -67,7 +63,6 @@ function ProfilePage() {
   const editPost = (e) => {
     e.preventDefault();
    let tmpDTO={id,content};
-   console.log(tmpDTO);
     facade.editPostenU(tmpDTO);
     setTimeout(getAll,2000);
     setEdit(false);
@@ -100,6 +95,7 @@ return (
         )
       })
     )}
+    <h1>{delText&&delText}</h1>
   </tbody>
 </table>
 {edit && (

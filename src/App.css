@@ -76,7 +76,15 @@ table, th, td {
  }
 
  .BlueBC{
- 
+  background: repeating-linear-gradient(
+    45deg,
+    #051cb6,
+    #01106e 22px,
+    #000836 22px,
+    #000000 22px
+  );
+
+  /*det ovenover er det eneste ændret så if u dont like så udkommenter*/
   align-content: center;
   background-color: #01115e;
   color: rgb(36, 36, 36);

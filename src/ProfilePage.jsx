@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import facade from "./apiFacade";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Footer from './Footer'
-import PostUserPart from "./ProfilePost"
-import PictureHandling from "./PictureHandling";
-import MakePost from "./ProfileMakePost";
+import Footer from './components/Footer'
+import PostUserPart from "./components/ProfilePost"
+import PictureHandling from "./components/PictureHandling";
+import MakePost from "./components/ProfileMakePost";
 import {
   Table,
   Button,

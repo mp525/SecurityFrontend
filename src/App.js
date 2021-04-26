@@ -11,7 +11,7 @@ import {
 import Login from "./Login";
 import facade from "./apiFacade";
 import LoginForm from "./loginForm";
-import Adminpage from "./Adminpage";
+import Adminpage from "./components/Adminpage";
 import ProfilePage from "./ProfilePage";
 import FrontPage from "./FrontPage";
 import { Row, Col, Container } from "react-bootstrap";

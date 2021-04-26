@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./App.css";
-import facade from "./apiFacade";
+import "../App.css";
+import facade from "../apiFacade";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './Footer'
 import {
