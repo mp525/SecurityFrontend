@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Button, Form } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
 function LogInForm({ login, errorMes, setErrorMes }) {
   const init = { username: "", password: "" };
@@ -52,6 +53,9 @@ function LogInForm({ login, errorMes, setErrorMes }) {
               Login
             </Button>
           </Form>
+          <NavLink to="/register">
+              Register a user
+            </NavLink>
         </Card.Body>
       </Card>
       {/* <div align="center">

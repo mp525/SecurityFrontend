@@ -15,6 +15,7 @@ import Adminpage from "./components/Adminpage";
 import ProfilePage from "./ProfilePage";
 import FrontPage from "./FrontPage";
 import { Row, Col, Container } from "react-bootstrap";
+import RegisterUser from "./RegisterUser";
 function App() {
   const [errorMes, setErrorMes] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
@@ -100,6 +101,9 @@ function App() {
                   loginMsg={loggedIn ? "Logout" : "Login"}
                   setLoginStatus={setLoginStatus}
                 />
+              </Route>
+              <Route path="/register">
+                <RegisterUser />
               </Route>
               {/* <Route path="/login">
           

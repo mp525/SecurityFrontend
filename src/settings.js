@@ -1,11 +1,12 @@
 //const mainURL = "http://localhost:8080/SecurityBackend_war";
-const mainURL = "http://localhost:8085/jpareststarter";
+const mainURL = "http://localhost:8080/jpareststarter";
 //const mainURL = "https://vn41.dk/devops-starter";
 const userInfoEndpoint = "/api/info/user";
 const adminInfoEndpoint = "/api/info/admin";
 const defaultEndpoint = "/api/default";
 const loginEndpoint = "/api/login";
 const userCount = "/api/info/all";
+const info = "/api/info";
 const allPosts = "/api/info/allPosts";
 const allPostsAdmin = "/api/info/allPostsAdmin";
 const profile = "/api/info/profile";
@@ -29,5 +30,6 @@ export {
   userposts,
   deletePost,
   editPost,
-  allPostsAdmin,deletePostU,editPostU
+  allPostsAdmin,deletePostU,editPostU,
+  info
 };

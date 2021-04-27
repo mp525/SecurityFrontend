@@ -12,7 +12,8 @@ import {
     userposts,
     deletePost,
     editPost,
-    allPostsAdmin,deletePostU,editPostU
+    allPostsAdmin,deletePostU,editPostU,
+    info
     } from "./settings";
 
  
@@ -48,6 +49,15 @@ const login = (user, password) => {
       .then(res => {setToken(res.token) })
       
       
+}
+
+const register = (user, setMsg) =>{
+  const options = makeOptions("POST", false, user);
+  return fetch(mainURL + info, options)
+  .then(handleHttpErrors)
+  .then(data=>{
+    setMsg(data);
+  })
 }
 
 const isAdmin = () => {
@@ -212,7 +222,8 @@ const makeOptions= (method,addToken,body) =>{
      editPosten,
      fetchAllPostsAdmin,
      editPostenU,
-     deletePostenU
+     deletePostenU,
+     register
      
  }
 }
