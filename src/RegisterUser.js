@@ -97,7 +97,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
             <button onClick={performLogin}>Login</button>
           </form>
           <p>{errorMes}</p>
-        </div> */}
+        </div> */} 
        </div>
     </div>
   );
