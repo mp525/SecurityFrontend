@@ -5,6 +5,15 @@ import facade from "./apiFacade";
 function RegisterForm({ login, errorMes, setErrorMes }) {
   const [user, setUser] = useState({userName:"", password:"", firstName:"", lastName:"", email:""});
   const [msg, setMsg] = useState("");
+  const [valiCheck,setValiCheck]=useState();
+  const conditions=[
+    user.password == user.password.toUpperCase(),
+    user.password == user.password.toLowerCase(),
+    user.password.length<8,
+    !isNaN(user.password * 1),
+    user.userName.length<8
+
+  ];
   //const [loginCredentials, setLoginCredentials] = useState(init);
 
   useEffect(() => {
@@ -13,13 +22,39 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
 
   const register = (evt) => {
     evt.preventDefault();
-    facade.register(user, setMsg);
+    if (!conditions[0]&&!conditions[1]&&!conditions[2]&&!conditions[3]) {
+      facade.register(user, setMsg);
+    }else{
+      setValiCheck("Make sure the password is made correctly");
+    }
     //login(loginCredentials.username, loginCredentials.password);
   };
   const onChange = (evt) => {
     const id = evt.target.id;
     const value = evt.target.value;
     const tmpUser = {...user, [id]:value};
+    
+    if (!conditions[0]&&!conditions[1]&&!conditions[2]&&!conditions[3]) {
+      setValiCheck("Password corresponds to our guidelines");
+    }
+      if (conditions[0]) {
+        setValiCheck("Needs one uppercase");
+      }
+      if (conditions[1]) {
+        setValiCheck("Needs one lowercase");
+      }
+      if (conditions[2]) {
+        setValiCheck("Minimum 8 characters!");
+      }
+      if (conditions[3]) {
+        setValiCheck("Needs one Numeric character");
+      }
+      if (conditions[4]) {
+        setValiCheck("Name needs to have a length of 8 or more");
+      }
+      
+    
+  
     setUser(tmpUser);
   };
 
@@ -31,10 +66,14 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
           <Card.Title className="text-center">
             Register for our website!
           </Card.Title>
+          
           <Card.Text className="text-center">Register</Card.Text>
           <Form onChange={onChange}>
+            <div class="alert alert-primary" role="alert">
+            {valiCheck}          
+          </div>
             <Form.Group controlId="formBasicEmail">
-              <Form.Control type="text" placeholder="Username" id="userName" />
+              <Form.Control type="text" placeholder="Username" id="userName" min="10"/>
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
@@ -49,6 +88,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
                 type="text"
                 placeholder="First name"
                 id="firstName"
+                
               />
             </Form.Group>
             <Form.Group controlId="formBasicLastName">

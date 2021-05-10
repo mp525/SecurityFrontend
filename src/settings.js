@@ -23,7 +23,6 @@ export {
   defaultEndpoint,
   loginEndpoint,
   userCount,
-  
   profile,
   allPosts,
   allprofile,
