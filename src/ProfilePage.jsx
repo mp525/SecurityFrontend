@@ -31,13 +31,17 @@ function Userpage() {
       });
   }, [dataFromServer]);
   useEffect(() => {
-      facade
-        .fetchProfileInfo(setProfile)
-        .then((data) => setProfile(data))
-        .catch((err) => {
-          throw (err)
-        });
-  }, [dataFromServer]);
+    fetchProfileAtStart()
+  }, []);
+
+  function fetchProfileAtStart(){
+    facade
+    .fetchProfileInfo(setProfile)
+    .then((data) => setProfile(data))
+    .catch((err) => {
+      console.log(err);
+    });
+  }
   useEffect(() => {
     if (profile != null) {
       setFname(profile.firstName);
@@ -45,7 +49,7 @@ function Userpage() {
       setUsername(profile.userName);
       setEmail(profile.email);
     }
-  })
+  },[profile])
   return (
     <div className="main">
       <div align="center">
@@ -80,6 +84,7 @@ function Userpage() {
       <div align="center">
       <Footer></Footer>
       </div>
+     
       <br /><br />
     </div>
   );

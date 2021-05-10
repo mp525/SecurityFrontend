@@ -143,10 +143,12 @@ const editPostenU = async (postDTO) => {
 const fetchProfileInfo=(callback)=>{
   const options = makeOptions("GET", true);
   return fetch(mainURL + profile, options)
+ 
   .then(handleHttpErrors)
   .then((data) => {
-    callback(data);
-  });
+    if (typeof callback === 'function') {
+      return callback(data);
+    }});
 }
 
 const fetchAllPosts = (callback) => {
@@ -155,7 +157,8 @@ const fetchAllPosts = (callback) => {
   .then(handleHttpErrors)
   .then((data) => {
     callback(data);
-  });
+  }
+  );
 };
 
 const fetchAllPostsAdmin = (callback) => {
