@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import facade from "./apiFacade";
 import Recaptcha from 'react-recaptcha'
 
 function RegisterForm({ login, errorMes, setErrorMes }) {
-  const [user, setUser] = useState({ userName: "", password: "", firstName: "", lastName: "", email: "" });
+  const [user, setUser] = useState({ userName: "", password: "", firstName: "", lastName: "", email: "" ,token:""});
   const [msg, setMsg] = useState("");
+  const [tokenstate,setTokenstate]=useState("");
   const [valiCheck, setValiCheck] = useState();
   const [verify, setVerify] = useState(false);
   let recaptchaInstance;
-
+  let token1;
   const conditions = [
     user.password == user.password.toUpperCase(),
     user.password == user.password.toLowerCase(),
@@ -28,6 +29,8 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
     evt.preventDefault();
     if (verify == true) {
       if (!conditions[0] && !conditions[1] && !conditions[2] && !conditions[3]) {
+        user.token=tokenstate;
+        console.log(user.token);
         facade.register(user, setMsg);
       } else {
         setValiCheck("Make sure the password is made correctly");
@@ -72,6 +75,10 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
   };
   const verifyCallback = (response) => {
     if(response){
+      token1=response;
+      setTokenstate(response);
+      console.log(user.token);
+      console.log(token1);
       setVerify(true);
     }
   };

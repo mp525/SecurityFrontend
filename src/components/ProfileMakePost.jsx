@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Button
 } from "react-bootstrap";
+import Recaptcha from 'react-recaptcha'
 
 function MakePost() {
     const [errorMes, setErrorMes] = useState("");
@@ -16,6 +17,9 @@ function MakePost() {
     const [userName, setUsername] = useState();
     const [email, setEmail] = useState();
     const [userResult, setUserResult] = useState("");
+    const [valiCheck, setValiCheck] = useState();
+    const [verify, setVerify] = useState(false);
+    let recaptchaInstance;
 
     useEffect(() => {
         facade.fetchDataUser()
@@ -79,7 +83,14 @@ function MakePost() {
         });
         setNewPost({content:""});
     }
-
+    const resetRecaptcha = () => {
+      recaptchaInstance.reset();  
+    };
+    const verifyCallback = (response) => {
+      if(response){
+        setVerify(true);
+      }
+    };
     return (
         <div className="info">
             <h3>Make a post</h3>
@@ -88,6 +99,16 @@ function MakePost() {
                 {/* <input type="text" id="user" value={userName} onChange={handleChange}/> */}
                 {/* <button onClick={handleSubmit}>Send post</button> */}
                 <br/>
+                <div>
+                <Recaptcha
+                  ref={e => recaptchaInstance = e}
+                  sitekey="6LcIFdAaAAAAAENI3sqaj5ARz7DOYMovZng2lHO3"
+                  verifyCallback={verifyCallback}
+                />
+                {/* <button onClick={resetRecaptcha}>
+                  Reset
+                </button> */}
+              </div>
                 <Button onClick={handleSubmit}>Send post</Button>
                 <p>{errorMes}</p>
             </form>
