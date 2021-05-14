@@ -3,7 +3,7 @@ import "../App.css";
 import facade from "../apiFacade";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
-  Button
+  Button,Hint
 } from "react-bootstrap";
 import Recaptcha from 'react-recaptcha'
 
@@ -14,13 +14,15 @@ function MakePost() {
     const [profile, setProfile] = useState();
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
-    const [userName, setUsername] = useState();
+    const [userName, setUsername] = useState("");
     const [email, setEmail] = useState();
     const [userResult, setUserResult] = useState("");
     const [valiCheck, setValiCheck] = useState();
     const [verify, setVerify] = useState(false);
-    let recaptchaInstance;
+    const [token,setToken]=useState("");
 
+    let recaptchaInstance;
+    let token1;
     useEffect(() => {
         facade.fetchDataUser()
         .then((data) => setDataFromServer(data.msg))
@@ -31,14 +33,6 @@ function MakePost() {
         });
     }, [dataFromServer]);
 
-    /* useEffect(() => {
-        facade
-          .fetchProfileInfo(dataFromServer.substring(9, 13), setProfile)
-          .then((data) => setProfile(data))
-          .catch((err) => {
-            throw (err)
-          });
-    }, [dataFromServer]); */
 
     useEffect(() => {
         const uName = dataFromServer.lastIndexOf(' ');
@@ -59,7 +53,6 @@ function MakePost() {
         setLname(profile.lastName);
         setUsername(profile.userName);
         setEmail(profile.email);
-        console.log("userresult:" + userResult);
       }
     });
 
@@ -68,32 +61,35 @@ function MakePost() {
         const value = target.value;
         const prop = target.id;
         let tmpPost = { ...newPost, [prop]: value };
-        let tmp2 = { ...tmpPost, user: {...profile}}
+        let tmp2 = { ...tmpPost, user: {token}}
         setNewPost(tmp2);
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        //console.log(newPost);
         setErrorMes("");
-        facade.addPosten(newPost).catch((err) => {
-            err.fullError.then((err) => {
-                setErrorMes("Your post cannot be empty.")
-            })
-        });
-        setNewPost({content:""});
+        if(verify){
+        await facade.addPosten(newPost).then(data=>setValiCheck(data)).catch(err=>console.log(err));
+      }
     }
     const resetRecaptcha = () => {
       recaptchaInstance.reset();  
     };
     const verifyCallback = (response) => {
       if(response){
+        token1=response;
+        setToken(response);
+        
         setVerify(true);
+        
       }
     };
     return (
         <div className="info">
             <h3>Make a post</h3>
+            <div class="alert alert-primary" role="alert">
+                {valiCheck}
+              </div>
             <form>
                 <input style={{height:"200px", width:"80%"}} type="text" id="content" onChange={handleChange}/>
                 {/* <input type="text" id="user" value={userName} onChange={handleChange}/> */}

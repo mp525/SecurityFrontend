@@ -32,6 +32,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
         user.token=tokenstate;
         console.log(user.token);
         facade.register(user, setMsg);
+        setValiCheck("You have succesfully registered yourself");
       } else {
         setValiCheck("Make sure the password is made correctly");
       }
@@ -80,6 +81,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
       console.log(user.token);
       console.log(token1);
       setVerify(true);
+      
     }
   };
   return (
