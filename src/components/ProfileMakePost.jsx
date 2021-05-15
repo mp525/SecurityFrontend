@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Button
 } from "react-bootstrap";
+import checkInput from "./InputChecker.js";
 
 function MakePost() {
     const [errorMes, setErrorMes] = useState("");
@@ -70,14 +71,19 @@ function MakePost() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        //console.log(newPost);
-        setErrorMes("");
-        facade.addPosten(newPost).catch((err) => {
+        console.log(newPost);
+        let checked = checkInput(newPost.content);
+        if(checked === 'Error') {
+          setErrorMes("Input not allowed");
+        } else {
+          setErrorMes("");
+          facade.addPosten(newPost).catch((err) => {
             err.fullError.then((err) => {
-                setErrorMes("Your post cannot be empty.")
-            })
-        });
-        setNewPost({content:""});
+              setErrorMes("Your post cannot be empty.");
+            });
+          });
+          setNewPost({ content: "" });
+        }
     }
 
     return (
