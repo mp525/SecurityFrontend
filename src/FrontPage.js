@@ -16,6 +16,7 @@ function FrontPage() {
 
   useEffect(() => {
     facade.fetchAllPosts(setPosts);
+    
   }, []);
 
   return (
@@ -38,7 +39,7 @@ function FrontPage() {
                 {/* <Card.Title>Post wall</Card.Title> */}
                 {posts.list && (
                   <>
-                    {posts.list.map((post) => {
+                    {posts.list.reverse().map((post) => {
                       return (
                         <>
                           <Card

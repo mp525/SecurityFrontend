@@ -42,8 +42,8 @@ const logout = () => {
 }
 
 
-const login = (user, password) => {
-    const options = makeOptions("POST", true,{username: user, password: password });
+const login = (user, password,token) => {
+    const options = makeOptions("POST", true,{username: user, password: password,token: token});
     return fetch(mainURL + loginEndpoint, options)
       .then(handleHttpErrors)
       .then(res => {setToken(res.token) })

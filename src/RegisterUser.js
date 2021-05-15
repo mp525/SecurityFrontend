@@ -86,13 +86,20 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
   };
   return (
     <div>
-      <div align="center">
+      <div classname="container" align="center">
+
+      <div className="row">
+      
+      <div className="col-sm">
+
+      </div>
+      <div className="col-lg"> 
         <Card style={{ width: "22rem" }}>
           <Card.Body>
             <Card.Title className="text-center">
               Register for our website!
           </Card.Title>
-
+          
             <Card.Text className="text-center">Register</Card.Text>
             <Form onChange={onChange}>
               <div class="alert alert-primary" role="alert">
@@ -160,6 +167,16 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
           )}
         </Card>
         <br/>
+      </div>
+      <div className="col">
+        <h1>Requirements</h1>
+        <ul  class="list-group list-group-flush"/>
+        <li class="list-group-item">Username should have a Minimum of 8 characters!</li>
+        <li class="list-group-item">Password should have a Minimum of 8 characters!</li>
+        <li class="list-group-item">Password should have a Capital and Non Capital letter!</li>
+        <li class="list-group-item">Password should have 1 Numeric character!</li>
+      </div>
+      </div>
       </div>
     </div>
   );

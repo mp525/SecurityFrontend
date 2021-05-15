@@ -26,9 +26,9 @@ function App() {
     facade.logout();
     setLoggedIn(false);
   }; */
-  const login = (user, pass) => {
+  const login = (user, pass,token) => {
     facade
-      .login(user, pass)
+      .login(user, pass,token)
 
       .then((res) => setLoggedIn(true))
       .catch((err) => {

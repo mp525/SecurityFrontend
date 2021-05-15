@@ -9,7 +9,7 @@ import {
   Row,Card
 } from "react-bootstrap";
 function ProfilePage() {
-    const [errorUser, setErrorUser] = useState("");
+  const [errorUser, setErrorUser] = useState("");
   const [dataFromServer, setDataFromServer] = useState("Error");
   const [word, setWord] = useState("");
   const [posts, setPosts] = useState([]);
