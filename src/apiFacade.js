@@ -179,13 +179,13 @@ const fetchAllProfile=(callback)=>{
         callback(data);
       });
 }
-const fetchAllUserPosts=(name1,callback)=>{
+const fetchAllUserPosts=(callback)=>{
   const options = makeOptions("GET", true);
-  return fetch(mainURL + userposts+name1, options)
+  return fetch(mainURL + userposts, options)
   .then(handleHttpErrors)
       .then((data) => {
         callback(data);
-        console.log(mainURL + userposts+name1);
+        console.log(mainURL + userposts);
       });
 }
 const makeOptions= (method,addToken,body) =>{
