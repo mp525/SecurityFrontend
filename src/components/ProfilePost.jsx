@@ -9,24 +9,13 @@ import {
   Row,Card
 } from "react-bootstrap";
 function ProfilePage() {
-  const [errorUser, setErrorUser] = useState("");
-  const [dataFromServer, setDataFromServer] = useState("Error");
   const [word, setWord] = useState("");
   const [posts, setPosts] = useState([]);
   const [content,setContent]=useState("")
   const [edit, setEdit]=useState(false);
   const [id, setEditID]=useState();
-  const [delText,setDelText]=useState();
-  useEffect(() => {
-    facade
-      .fetchDataUser()
-      .then((data) => setDataFromServer(data.msg))
-      .catch((err) => {
-        err.fullError.then((err) => {
-          setErrorUser(err.message);
-        });
-      });
-  }, []);
+  const [delText,setDelText]=useState("");
+ 
   const getByWord = () => {
     let arr = [];
     posts.filter(x => {
@@ -39,6 +28,7 @@ function ProfilePage() {
     setPosts(arr);
   };
   const getAll = () => {
+    setDelText("");
     facade.fetchAllUserPosts(setPosts)
   };
 
@@ -50,19 +40,21 @@ function ProfilePage() {
     e.preventDefault();
     const id = e.target.id;
     let deltext1=facade.deletePostenU(id);
-    setDelText(deltext1);
-    setTimeout(getAll,2000);
+    setDelText(id+" was deleted");
+    //setTimeout(getAll,2000);
 
   };
   const startEdit = (e) => {
     e.preventDefault();
-    const id1 = e.target.id;
-    setEditID(...id1);
+    const id1 = Number(e.target.id);
+        setEditID(id1);
     setEdit(true);
   };
   const editPost = (e) => {
     e.preventDefault();
-   let tmpDTO={id,content};
+    
+
+   let tmpDTO={"id":id,content};
     facade.editPostenU(tmpDTO);
     setTimeout(getAll,2000);
     setEdit(false);
