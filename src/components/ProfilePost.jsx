@@ -39,7 +39,7 @@ function ProfilePage() {
     setPosts(arr);
   };
   const getAll = () => {
-    facade.fetchAllUserPosts(dataFromServer.substring(15, 20), setPosts)
+    facade.fetchAllUserPosts(setPosts)
   };
 
   const handleChange = (event) => {
