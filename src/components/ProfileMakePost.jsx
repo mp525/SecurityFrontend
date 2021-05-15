@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Button,Hint
 } from "react-bootstrap";
+import checkInput from "./InputChecker.js";
 import Recaptcha from 'react-recaptcha'
 
 function MakePost() {
@@ -67,11 +68,29 @@ function MakePost() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setErrorMes("");
-        if(verify){
-        await facade.addPosten(newPost).then(data=>setValiCheck(data)).catch(err=>console.log(err));
+        console.log(newPost);
+        let checked = checkInput(newPost.content);
+        if(checked === 'Error') {
+          setErrorMes("Input not allowed");
+        } else {
+          setErrorMes("");
+          if(verify) {
+            facade.addPosten(newPost).catch((err) => {
+            err.fullError.then((err) => {
+              setErrorMes("Your post cannot be empty.");
+            });
+          });
+          setNewPost({ content: "" });
+        }
+          
+
+          /* setErrorMes("");
+          if(verify){
+          await facade.addPosten(newPost).then(data=>setValiCheck(data)).catch(err=>console.log(err));
+        } */
       }
     }
+    
     const resetRecaptcha = () => {
       recaptchaInstance.reset();  
     };
