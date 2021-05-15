@@ -10,7 +10,7 @@ import checkInput from "./InputChecker.js";
 function MakePost() {
     const [errorMes, setErrorMes] = useState("");
     const [dataFromServer, setDataFromServer] = useState("Error");
-    const [newPost, setNewPost] = useState("");
+    const [newPost, setNewPost] = useState({});
     const [profile, setProfile] = useState();
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -58,7 +58,7 @@ function MakePost() {
         const value = target.value;
         const prop = target.id;
         let tmpPost = { ...newPost, [prop]: value};
-        let tmp2 = { ...tmpPost}
+        let tmp2 = { ...tmpPost,user:{}}
         setNewPost(tmp2);
     }
 
