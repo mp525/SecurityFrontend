@@ -111,7 +111,7 @@ return (
     <h4>Delete Posts with unwanted content</h4>
     <Button   onClick={fetchPosts} className="myButton">Manage Posts<br/></Button>
     <Table class="table">
-      <div  class="table-responsive">
+      
     <thead>
           <tr><th>Author Username</th><th>Content</th><th>Name of author</th><th>Edit</th><th>Delete</th></tr>
         </thead>
@@ -134,7 +134,7 @@ return (
                   
               )})
         )}
-        </div>
+       
    
     <br/><br/>
     </Table>

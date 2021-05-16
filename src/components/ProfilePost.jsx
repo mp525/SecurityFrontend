@@ -72,7 +72,7 @@ return (
 <Button onClick={getAll} className="myButton">See Posts<br /></Button>
 <Button onClick={getByWord} className="myButton">See all with word<br /></Button>
 <input type="text" value={word} onChange={handleChange} />
-<table className="table">
+<table>
   <thead><tr><th>Content</th><th>Posted</th><th>Edit</th><th>Delete</th></tr></thead>
   <tbody>
     {posts && (
