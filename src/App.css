@@ -142,3 +142,9 @@ td{
   width: 20px;
   word-wrap:break-word
 }
+.cell1{
+  display:table-cell;
+  width:100px;
+  max-width: 500px;
+  min-width:100px;
+  }

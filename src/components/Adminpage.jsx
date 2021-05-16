@@ -124,7 +124,7 @@ return (
                 <tbody >
                   <tr key={idx}>
                   <td>{x.posted}</td>
-                  <td className="td">{x.content}</td>
+                  <td className="cell1">{x.content}</td>
                   <td>{x.user.userName}</td>
                   <td><Button variant="warning" onClick={startEdit} id={x.id}>Edit</Button>{' '}</td>
                   <td><Button variant="danger" onClick={deletePost} id={x.id}>Delete</Button> </td>
