@@ -28,6 +28,16 @@ function Adminpage() {
       });
   }, []);
 
+  useEffect(() => {
+    if(!facade.isAdmin()){
+      return (
+        <div>
+          <h3>Unauthorized</h3>
+        </div>
+      )
+    }
+  }, []);
+
   const submitTitle = () => {
     facade.fetchAllProfile(setUsers)
   };

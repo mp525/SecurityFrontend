@@ -168,11 +168,14 @@ function Header({ loggedIn, loginMsg }) {
               Profile
             </NavLink>
           </li>
-          <li>
+          {facade.isAdmin() === "admin" && (
+            <li>
             <NavLink exact activeClassName="active" to="/page4">
               Adminpage
             </NavLink>
           </li>
+          )  
+          }
           <li>
             <NavLink exact activeClassName="active" to="/logout">
               Logout
