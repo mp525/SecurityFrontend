@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import Recaptcha from 'react-recaptcha'
+import Recaptcha from "react-recaptcha";
 import {
   Switch,
   Route,
@@ -26,9 +26,9 @@ function App() {
     facade.logout();
     setLoggedIn(false);
   }; */
-  const login = (user, pass,token) => {
+  const login = (user, pass, token) => {
     facade
-      .login(user, pass,token)
+      .login(user, pass, token)
 
       .then((res) => setLoggedIn(true))
       .catch((err) => {
@@ -170,12 +170,11 @@ function Header({ loggedIn, loginMsg }) {
           </li>
           {facade.isAdmin() === "admin" && (
             <li>
-            <NavLink exact activeClassName="active" to="/page4">
-              Adminpage
-            </NavLink>
-          </li>
-          )  
-          }
+              <NavLink exact activeClassName="active" to="/page4">
+                Adminpage
+              </NavLink>
+            </li>
+          )}
           <li>
             <NavLink exact activeClassName="active" to="/logout">
               Logout
