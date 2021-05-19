@@ -59,7 +59,13 @@ function MakePost() {
         const prop = target.id;
         let tmpPost = { ...newPost, [prop]: value};
         let tmp2 = { ...tmpPost,user:{}}
-        setNewPost(tmp2);
+        if(tmp2.content.length > 300) {
+          setErrorMes("Over 300 characters, please delete some text");
+        } else {
+          setErrorMes("");
+          setNewPost(tmp2);
+        }
+        
     }
 
     const handleSubmit = async (event) => {
@@ -93,9 +99,8 @@ function MakePost() {
         <div className="info">
             <h3>Make a post</h3>
             <form>
-                <input style={{height:"200px", width:"80%"}} type="text" id="content" onChange={handleChange}/>
-                {/* <input type="text" id="user" value={userName} onChange={handleChange}/> */}
-                {/* <button onClick={handleSubmit}>Send post</button> */}
+                {/* <input style={{height:"200px", width:"80%", flexWrap:"wrap"}} type="text" id="content" onChange={handleChange}/> */}
+                <textarea style={{height:"200px", width:"80%"}} wrap="hard" id="content" type="text" onChange={handleChange}></textarea>
                 <br/>
                 <div>
                 

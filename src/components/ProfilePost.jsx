@@ -8,6 +8,8 @@ import {
   Button,
   Row,Card
 } from "react-bootstrap";
+import checkInput from "./InputChecker.js";
+
 function ProfilePage() {
   const [word, setWord] = useState("");
   const [posts, setPosts] = useState([]);
@@ -15,6 +17,7 @@ function ProfilePage() {
   const [edit, setEdit]=useState(false);
   const [id, setEditID]=useState();
   const [delText,setDelText]=useState("");
+  const [errorMes, setErrorMes] = useState("");
  
   const getByWord = () => {
     let arr = [];
@@ -52,12 +55,16 @@ function ProfilePage() {
   };
   const editPost = (e) => {
     e.preventDefault();
+    let checked = checkInput(content);
+    if(checked === 'Error') {
+      setErrorMes("Input not allowed");
+    } else {
+      let tmpDTO={"id":id,content};
+      facade.editPostenU(tmpDTO);
+      setTimeout(getAll,2000);
+      setEdit(false);
+    }
     
-
-   let tmpDTO={"id":id,content};
-    facade.editPostenU(tmpDTO);
-    setTimeout(getAll,2000);
-    setEdit(false);
   };
   const editOnChange=(e)=>{
       const target = e.target; 
@@ -94,7 +101,7 @@ return (
         
           
         <Card border="dark" className="BlueBC">
-          <h3>Edit Post: </h3>
+          <h3 style={{color:'white'}}>Edit Post: </h3>
           <form>
             <input type="text" disabled value={"ID: " + id&& id} />
             <br />
@@ -109,6 +116,7 @@ return (
             />
             <br />
             <Button onClick={editPost}>Submit change</Button>
+            <p style={{color:'white'}}>{errorMes}</p>
           </form>
           <br />
         </Card>
