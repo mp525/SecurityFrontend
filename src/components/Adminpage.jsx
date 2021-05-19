@@ -28,6 +28,16 @@ function Adminpage() {
       });
   }, []);
 
+  useEffect(() => {
+    if(!facade.isAdmin()){
+      return (
+        <div>
+          <h3>Unauthorized</h3>
+        </div>
+      )
+    }
+  }, []);
+
   const submitTitle = () => {
     facade.fetchAllProfile(setUsers)
   };
@@ -45,7 +55,7 @@ function Adminpage() {
   const startEdit = (e) => {
     e.preventDefault();
     const id1 = e.target.id;
-    setEditID(...id1);
+    setEditID(id1);
     setEdit(true);
   };
   const editPost = (e) => {
@@ -76,7 +86,7 @@ return (
 <br/>
     {facade.isAdmin().indexOf("admin") !== -1 && (
       <>
-      <Table striped bordered hover size="sm">
+      <Table className="table2">
       
         <thead>
           <tr><th>First Name</th><th>Last Name</th><th>User Name</th><th>Email</th></tr>
@@ -92,8 +102,8 @@ return (
                   <td>{x.lastName}</td>
                   <td>{x.userName}</td>
                   <td>{x.email}</td>
-                  <td><Button variant="warning" id={x.id}>Edit</Button> </td>
-                  <td><Button variant="danger" >Delete</Button> </td>
+                 {/*  <td><Button variant="warning" id={x.id}>Edit</Button> </td>
+                  <td><Button variant="danger" >Delete</Button> </td> */}
                   </tr>
               )})
         )}
@@ -110,27 +120,31 @@ return (
     <h3>Moderate Posts</h3>
     <h4>Delete Posts with unwanted content</h4>
     <Button   onClick={fetchPosts} className="myButton">Manage Posts<br/></Button>
-    <Table striped bordered hover size="sm">
+    <Table class="table">
+      
     <thead>
-          <tr><th>Author Username</th><th>Content</th><th>Name of author</th></tr>
+          <tr><th>Author Username</th><th>Content</th><th>Name of author</th><th>Edit</th><th>Delete</th></tr>
         </thead>
+        
     {
         posts &&(
           posts.list.map((x,idx) => {      
               return (
-                <tbody>
+               
+                <tbody >
                   <tr key={idx}>
                   <td>{x.posted}</td>
-                  <td>{x.content}</td>
-                  <td>{x.user.firstName+" "+ x.user.lastName}</td>
+                  <td className="cell1">{x.content}</td>
+                  <td>{x.user.userName}</td>
                   <td><Button variant="warning" onClick={startEdit} id={x.id}>Edit</Button>{' '}</td>
                   <td><Button variant="danger" onClick={deletePost} id={x.id}>Delete</Button> </td>
                   <td>{delText && <h1>{delText}</h1>}</td>
                   </tr>
                   </tbody>
+                  
               )})
         )}
-        
+       
    
     <br/><br/>
     </Table>

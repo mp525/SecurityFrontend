@@ -41,8 +41,9 @@ function FrontPage() {
                   <>
                     {posts.list.reverse().map((post) => {
                       return (
-                        <>
+                        <div key={post.id}>
                           <Card
+                            
                             bg="light"
                             border="success"
                             style={{ width: "40rem" }}
@@ -58,7 +59,7 @@ function FrontPage() {
                             </Card.Body>
                           </Card>
                           <br />
-                        </>
+                        </div>
                       );
                     })}
                   </>

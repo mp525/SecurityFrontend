@@ -48,6 +48,7 @@
  align-content:center;
  background-color: #eeeeee;
  color: rgb(0, 0, 0);
+ white-space: initial;
  
 }
 table, th, td {
@@ -132,3 +133,18 @@ color: black;
   font-family: arial;
   background: rgb(255, 255, 255);
 }
+.table2{
+  width: 500px;
+  box-shadow: #000000 2px 2px;
+  table-layout: fixed;
+}
+td{
+  width: 20px;
+  word-wrap:break-word
+}
+.cell1{
+  display:table-cell;
+  width:100px;
+  max-width: 500px;
+  min-width:100px;
+  }

@@ -79,14 +79,14 @@ return (
 <Button onClick={getAll} className="myButton">See Posts<br /></Button>
 <Button onClick={getByWord} className="myButton">See all with word<br /></Button>
 <input type="text" value={word} onChange={handleChange} />
-<table className="table">
-  <thead><tr><th>Content</th><th>Posted</th></tr></thead>
+<table>
+  <thead><tr><th>Content</th><th>Posted</th><th>Edit</th><th>Delete</th></tr></thead>
   <tbody>
     {posts && (
       posts.map((x, idx) => {
         return (
           <tr key={idx}>
-            <td>{x.content}</td>
+            <td  className="cell1">{x.content}</td>
             <td>{x.posted}</td>
             <td><Button variant="warning" onClick={startEdit} id={x.id}>Edit</Button>{' '}</td>
             <td><Button variant="danger" onClick={deletePost} id={x.id}>Delete</Button> </td>
