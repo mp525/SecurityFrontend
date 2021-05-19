@@ -3,12 +3,14 @@ import { Card, Button, Form } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import Recaptcha from 'react-recaptcha'
 import facade from "./apiFacade";
+import checkInput from "./components/InputChecker";
 
 function LogInForm({setLoggedIn,setErrorMes,login}) {
   const init = { username: "", password: ""};
   const [loginCredentials, setLoginCredentials] = useState(init);
   const [token,setToken]=useState("");
   const [verify, setVerify] = useState(false);
+  //const [errorMes, setErrorMes] = useState("");
   let recaptchaInstance;
   let token1;
 
@@ -16,7 +18,13 @@ function LogInForm({setLoggedIn,setErrorMes,login}) {
   const performLogin = (evt) => {
     evt.preventDefault();
     if(verify){
-      login(loginCredentials.username, loginCredentials.password, token)
+      let checked = checkInput(loginCredentials.username);
+      if(checked === 'Error') {
+        setErrorMes("Input not valid");
+      } else {
+        setErrorMes("");
+        login(loginCredentials.username, loginCredentials.password, token)
+      }
     }else{
       console.log("Verify humanity");
     }
