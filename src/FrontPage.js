@@ -16,7 +16,6 @@ function FrontPage() {
 
   useEffect(() => {
     facade.fetchAllPosts(setPosts);
-    
   }, []);
 
   return (
@@ -27,7 +26,10 @@ function FrontPage() {
             <Card className="mb-3" bg="secondary" border="light">
               <Card.Body>
                 <Card.Title>TODO</Card.Title>
-                <Card.Text>Suggestion: Maybe make post vindue her, eller venner/following.</Card.Text>
+                <Card.Text>
+                  Suggestion: Maybe make post vindue her, eller
+                  venner/following.
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>
@@ -43,7 +45,6 @@ function FrontPage() {
                       return (
                         <div key={post.id}>
                           <Card
-                            
                             bg="light"
                             border="success"
                             style={{ width: "40rem" }}
@@ -72,7 +73,9 @@ function FrontPage() {
             <Card className="mb-3" bg="secondary" border="light">
               <Card.Body>
                 <Card.Title>TODO</Card.Title>
-                <Card.Text>Suggestion: Maybe all users in system here?</Card.Text>
+                <Card.Text>
+                  Suggestion: Maybe all users in system here?
+                </Card.Text>
               </Card.Body>
             </Card>
           </Col>

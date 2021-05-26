@@ -17,6 +17,8 @@ const deletePost = "/api/info/deletePost/";
 const editPost = "/api/info/editPost";
 const deletePostU = "/api/info/deletePostUser/";
 const editPostU = "/api/info/editPostUser";
+const addpicture = "/api/files/addPicture";
+const getalluserpictures = "/api/files/getAllUserPictures";
 export {
   mainURL,
   userInfoEndpoint,
@@ -34,4 +36,6 @@ export {
   deletePostU,
   editPostU,
   info,
+  addpicture,
+  getalluserpictures,
 };
