@@ -58,14 +58,17 @@ function MakePost() {
     setNewPost(tmp2);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    console.log(newPost);
-    let checked = checkInput(newPost.content);
-    if (checked === "Error") {
-      setErrorMes("Input not allowed");
+  const handleChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const prop = target.id;
+    let tmpPost = { ...newPost, [prop]: value };
+    let tmp2 = { ...tmpPost, user: {} };
+    if (tmp2.content.length > 300) {
+      setErrorMes("Over 300 characters, please delete some text");
     } else {
       setErrorMes("");
+      setNewPost(tmp2);
 
       console.log(newPost);
 
@@ -88,14 +91,14 @@ function MakePost() {
     <div className="info">
       <h3>Make a post</h3>
       <form>
-        <input
+        {/* <input style={{height:"200px", width:"80%", flexWrap:"wrap"}} type="text" id="content" onChange={handleChange}/> */}
+        <textarea
           style={{ height: "200px", width: "80%" }}
-          type="text"
+          wrap="hard"
           id="content"
+          type="text"
           onChange={handleChange}
-        />
-        {/* <input type="text" id="user" value={userName} onChange={handleChange}/> */}
-        {/* <button onClick={handleSubmit}>Send post</button> */}
+        ></textarea>
         <br />
         <div>
           {/* <button onClick={resetRecaptcha}>

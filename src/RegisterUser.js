@@ -2,6 +2,7 @@ import React, { useState, useEffect,useRef } from "react";
 import { Card, Button, Form } from "react-bootstrap";
 import facade from "./apiFacade";
 import Recaptcha from 'react-recaptcha'
+import checkInput from "./components/InputChecker";
 
 function RegisterForm({ login, errorMes, setErrorMes }) {
   const [user, setUser] = useState({ userName: "", password: "", firstName: "", lastName: "", email: "" ,token:""});
@@ -9,6 +10,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
   const [tokenstate,setTokenstate]=useState("");
   const [valiCheck, setValiCheck] = useState();
   const [verify, setVerify] = useState(false);
+  const [errorM, setErrorM] = useState("");
   let recaptchaInstance;
   let token1;
   const conditions = [
@@ -31,8 +33,23 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
       if (!conditions[0] && !conditions[1] && !conditions[2] && !conditions[3]) {
         user.token=tokenstate;
         console.log(user.token);
-        facade.register(user, setMsg);
-        setValiCheck("You have succesfully registered yourself");
+        let checkEmail = checkInput(user.email);
+        let checkFname = checkInput(user.firstName);
+        let checkLname = checkInput(user.lastName);
+        let checkUsername = checkInput(user.userName);
+        if(checkEmail === 'Error') {
+          setErrorM("Email not valid");
+        } else if(checkFname === 'Error') {
+          setErrorM("Firstname not valid");
+        } else if(checkLname === 'Error') {
+          setErrorM("Lastname not valid");
+        } else if(checkUsername === 'Error') {
+          setErrorM("Username not valid");
+        } else {
+          setErrorM("");
+          facade.register(user, setMsg);
+          setValiCheck("You have succesfully registered yourself");
+        }
       } else {
         setValiCheck("Make sure the password is made correctly");
       }
@@ -138,6 +155,7 @@ function RegisterForm({ login, errorMes, setErrorMes }) {
                   id="email"
                 />
               </Form.Group>
+              <p>{errorM}</p>
               <div>
                 <Recaptcha
                   ref={e => recaptchaInstance = e}
