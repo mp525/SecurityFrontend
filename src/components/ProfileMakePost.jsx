@@ -55,20 +55,22 @@ function MakePost() {
     const prop = target.id;
     let tmpPost = { ...newPost, [prop]: value };
     let tmp2 = { ...tmpPost, user: {} };
-    setNewPost(tmp2);
-  };
-
-  const handleChange = (event) => {
-    const target = event.target;
-    const value = target.value;
-    const prop = target.id;
-    let tmpPost = { ...newPost, [prop]: value };
-    let tmp2 = { ...tmpPost, user: {} };
     if (tmp2.content.length > 300) {
       setErrorMes("Over 300 characters, please delete some text");
     } else {
       setErrorMes("");
       setNewPost(tmp2);
+    }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(newPost);
+    let checked = checkInput(newPost.content);
+    if (checked === "Error") {
+      setErrorMes("Input not allowed");
+    } else {
+      setErrorMes("");
 
       console.log(newPost);
 
